@@ -1,14 +1,14 @@
-package Trainer;
+package Gym_Managment;
 
 import java.util.*;
 import java.io.*;
 
-public class MemberDatabase {
+public abstract class ClassDatabase extends Database {
 
-    private ArrayList<Member> records = new ArrayList<>();
+    private ArrayList<Class> records = new ArrayList<>();
     String filename;
 
-    public MemberDatabase(String filename) {
+    public ClassDatabase(String filename) {
         this.filename = filename;
     }
 
@@ -18,7 +18,7 @@ public class MemberDatabase {
             BufferedReader reader = new BufferedReader(new FileReader(filename));
             while ((line = reader.readLine()) != null) {
                 separated = line.split(", ");
-                Member obj = new Member(separated[0], separated[1], separated[2], separated[3], separated[4], separated[5]);
+                Class obj = new Class(separated[0], separated[1], separated[2], Integer.parseInt(separated[3]), Integer.parseInt(separated[4]));
                 records.add(obj);
             }
             reader.close();
@@ -27,18 +27,18 @@ public class MemberDatabase {
         }
     }
 
-    Member createRecordFrom(String line) {
+    Class createRecordFrom(String line) {
         String[] separated = line.split(", ");
-        Member obj = new Member(separated[0], separated[1], separated[2], separated[3], separated[4], separated[5]);
+        Class obj = new Class(separated[0], separated[1], separated[2], Integer.parseInt(separated[3]), Integer.parseInt(separated[4]));
         return obj;
     }
 
-    ArrayList<Member> returnAllRecords() {
+    ArrayList<Class> returnAllRecords() {
         return records;
     }
 
     boolean contains(String key) {
-        for (Member obj : records) {
+        for (Class obj : records) {
             if (key.equals(obj.getSearchKey())) {
                 return true;
             }
@@ -46,8 +46,8 @@ public class MemberDatabase {
         return false;
     }
 
-    Member getRecord(String key) {
-        for (Member obj : records) {
+    Class getRecord(String key) {
+        for (Class obj : records) {
             if (key.equals(obj.getSearchKey())) {
                 return obj;
             }
@@ -55,9 +55,9 @@ public class MemberDatabase {
         return null;
     }
 
-    void insertRecord(Member record) {
+    void insertRecord(Class record) {
         if (contains(record.getSearchKey())) {
-            System.out.println("Member Already Exists, Operation Failed...");
+            System.out.println("Class Already Exists, Operation Failed...");
         } else {
             records.add(record);
         }
@@ -65,22 +65,22 @@ public class MemberDatabase {
 
     void deleteRecord(String key) {
         if (contains(key)) {
-            for (Member obj : records) {
+            for (Class obj : records) {
                 if (key.equals(obj.getSearchKey())) {
                     records.remove(obj);
                 }
             }
         } else {
-            System.out.println("Member Does Not Exist, Operation Failed...");
+            System.out.println("Class Does Not Exist, Operation Failed...");
         }
     }
 
     void saveToFile() {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(filename, false));
-            for (Member obj : records) {
+            for (Class obj : records) {
                 String[] separated = obj.lineRepresentation().split(", ");
-                writer.write(separated[0] + ", " + separated[1] + ", " + separated[2] + ", " + separated[3] + ", " + separated[4] + separated[5] + "\n");
+                writer.write(separated[0] + ", " + separated[1] + ", " + separated[2] + ", " + separated[3] + ", " + separated[4] + "\n");
             }
             writer.close();
         } catch (IOException e) {

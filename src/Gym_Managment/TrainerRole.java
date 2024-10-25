@@ -1,10 +1,10 @@
-package Trainer;
+package Gym_Managment;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-public class TrainerRole {
+public abstract class TrainerRole extends Role{
     
     private MemberDatabase obj1;
     private ClassDatabase obj2;

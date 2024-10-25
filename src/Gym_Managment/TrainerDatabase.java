@@ -1,9 +1,9 @@
-package Admin;
+package Gym_Managment;
 
 import java.util.*;
 import java.io.*;
 
-public class TrainerDatabase {
+public abstract class TrainerDatabase extends Database {
 
     private ArrayList<Trainer> records = new ArrayList<>();
     String filename;

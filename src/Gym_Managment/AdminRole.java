@@ -1,8 +1,8 @@
-package Admin;
+package Gym_Managment;
 
 import java.util.*;
 
-public class AdminRole {
+public class AdminRole extends Role{
 
     private TrainerDatabase obj;
 

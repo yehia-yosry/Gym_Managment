@@ -1,6 +1,6 @@
-package Trainer;
+package Gym_Managment;
 
-public class Class {
+public class Class extends Identity {
 
     private String classID, className, trainerID;
     private int duration, availableSeats;

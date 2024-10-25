@@ -1,6 +1,6 @@
-package Trainer;
+package Gym_Managment;
 
-public class Member {
+public class Member extends Identity {
 
     private String memberID, name, membershipType, email, phoneNumber, status;
 

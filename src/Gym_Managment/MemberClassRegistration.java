@@ -1,4 +1,4 @@
-package Trainer;
+package Gym_Managment;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
