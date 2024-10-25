@@ -1,0 +1,3 @@
+C101, Yoga, T001, 60, 30
+C102, Bodybuilding, T002, 2, 3
+C103, Fitness, T003, 15, 40
