@@ -45,7 +45,7 @@ public class TrainerRole {
             System.out.println("No Available Seats, Operation Failed...");
             return false;
         }
-        
+
         registrationDatabase.insertRecord(registrationDatabase.createRecordFrom(memberID + ", " + classID + ", " + "active"));
         int count = classDatabase.getRecord(classID).getAvailableSeats();
         classDatabase.getRecord(classID).setAvailableSeats(count - 1);
@@ -53,18 +53,18 @@ public class TrainerRole {
     }
 
     boolean cancelRegistration(String memberID, String classID) {
-        if (!registrationDatabase.contains(memberID.concat(classID))) {
+        if (!registrationDatabase.contains(memberID + classID)) {
             System.out.println("Class Registration Not Found, Operation Failed...");
             return false;
         }
-        LocalDate prev = registrationDatabase.getRecord(memberID).getRegistrationDate();
+        LocalDate prev = registrationDatabase.getRecord(memberID + classID).getRegistrationDate();
         LocalDate now = LocalDate.now();
         long timePassed = ChronoUnit.DAYS.between(prev, now);
         if (Math.abs(timePassed) > 3) {
             System.out.println("Registration Cancellation Time Limit Exceeded, Operation Failed...");
             return false;
         }
-        registrationDatabase.deleteRecord(classID);
+        registrationDatabase.deleteRecord(memberID + classID);
         int count = classDatabase.getRecord(classID).getAvailableSeats();
         classDatabase.getRecord(classID).setAvailableSeats(count + 1);
         return true;

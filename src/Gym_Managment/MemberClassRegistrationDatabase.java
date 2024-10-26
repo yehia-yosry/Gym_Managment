@@ -39,7 +39,7 @@ public class MemberClassRegistrationDatabase extends Database {
 
     boolean contains(String key) {
         for (MemberClassRegistration obj : records) {
-            if (key.equals(obj.getSearchKey())) {
+            if (key.equals(obj.getMemberID() + obj.getClassID()))  {
                 return true;
             }
         }
@@ -48,7 +48,7 @@ public class MemberClassRegistrationDatabase extends Database {
 
     MemberClassRegistration getRecord(String key) {
         for (MemberClassRegistration obj : records) {
-            if (key.equals(obj.getMemberID())) {
+            if (key.equals(obj.getMemberID() + obj.getClassID())) {
                 return obj;
             }
         }
@@ -56,7 +56,7 @@ public class MemberClassRegistrationDatabase extends Database {
     }
 
     void insertRecord(MemberClassRegistration record) {
-        if (contains(record.getMemberID())) {
+        if (contains(record.getMemberID() + record.getClassID())) {
             System.out.println("Registration Already Exists, Operation Failed...");
         } else {
             records.add(record);
@@ -65,11 +65,7 @@ public class MemberClassRegistrationDatabase extends Database {
 
     void deleteRecord(String key) {
         if (contains(key)) {
-            for (MemberClassRegistration obj : records) {
-                if (key.equals(obj.getMemberID())) {
-                    records.remove(obj);
-                }
-            }
+            records.remove(getRecord(key));
         } else {
             System.out.println("Registration Does Not Exist, Operation Failed...");
         }
