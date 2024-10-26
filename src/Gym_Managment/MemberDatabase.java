@@ -3,7 +3,7 @@ package Gym_Managment;
 import java.util.*;
 import java.io.*;
 
-public abstract class MemberDatabase extends Database {
+public class MemberDatabase extends Database {
 
     private ArrayList<Member> records = new ArrayList<>();
     String filename;

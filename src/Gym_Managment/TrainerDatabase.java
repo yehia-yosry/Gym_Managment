@@ -3,7 +3,7 @@ package Gym_Managment;
 import java.util.*;
 import java.io.*;
 
-public abstract class TrainerDatabase extends Database {
+public class TrainerDatabase extends Database {
 
     private ArrayList<Trainer> records = new ArrayList<>();
     String filename;
@@ -65,11 +65,8 @@ public abstract class TrainerDatabase extends Database {
 
     void deleteRecord(String key) {
         if (contains(key)) {
-            for (Trainer obj : records) {
-                if (key.equals(obj.getSearchKey())) {
-                    records.remove(obj);
-                }
-            }
+            records.remove(getRecord(key));
+
         } else {
             System.out.println("Trainer Does Not Exist, Operation Failed...");
         }

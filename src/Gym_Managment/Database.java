@@ -10,8 +10,6 @@ abstract class Database {
 
     abstract boolean contains(String key);
 
-    abstract void insertRecord(Class record);
-
     abstract void deleteRecord(String key);
 
     abstract void saveToFile();

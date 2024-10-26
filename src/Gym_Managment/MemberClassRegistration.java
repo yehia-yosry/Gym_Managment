@@ -33,7 +33,7 @@ public class MemberClassRegistration {
 
     String lineRepresentation() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String data = String.join(", ", memberID, classID, registrationDate.format(formatter));
+        String data = String.join(", ", memberID, classID, registrationDate.format(formatter), status);
         return data;
     }
 

@@ -2,9 +2,9 @@ package Gym_Managment;
 
 import java.util.*;
 
-public class AdminRole extends Role{
+public class AdminRole {
 
-    private TrainerDatabase obj;
+    private TrainerDatabase database = new TrainerDatabase("Trainers.txt");
 
     public AdminRole() {
 
@@ -12,18 +12,18 @@ public class AdminRole extends Role{
 
     void addTrainer(String trainerId, String name, String email, String specialty, String phoneNumber) {
         Trainer obj1 = new Trainer(trainerId, name, email, specialty, phoneNumber);
-        obj.insertRecord(obj1);
+        database.insertRecord(obj1);
     }
 
     ArrayList<Trainer> getListOfTrainers() {
-        return obj.returnAllRecords();
+        return database.returnAllRecords();
     }
 
     void removeTrainer(String key) {
-        obj.deleteRecord(key);
+        database.deleteRecord(key);
     }
 
     void logout() {
-        obj.saveToFile();
+        database.saveToFile();
     }
 }

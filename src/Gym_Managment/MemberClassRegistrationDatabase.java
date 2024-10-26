@@ -3,7 +3,7 @@ package Gym_Managment;
 import java.util.*;
 import java.io.*;
 
-public abstract class MemberClassRegistrationDatabase extends Database {
+public class MemberClassRegistrationDatabase extends Database {
 
     private ArrayList<MemberClassRegistration> records = new ArrayList<>();
     String filename;
@@ -29,7 +29,7 @@ public abstract class MemberClassRegistrationDatabase extends Database {
 
     MemberClassRegistration createRecordFrom(String line) {
         String[] separated = line.split(", ");
-        MemberClassRegistration obj = new MemberClassRegistration(separated[0], separated[1], separated[3]);
+        MemberClassRegistration obj = new MemberClassRegistration(separated[0], separated[1], separated[2]);
         return obj;
     }
 
@@ -80,7 +80,7 @@ public abstract class MemberClassRegistrationDatabase extends Database {
             BufferedWriter writer = new BufferedWriter(new FileWriter(filename, false));
             for (MemberClassRegistration obj : records) {
                 String[] separated = obj.lineRepresentation().split(", ");
-                writer.write(separated[0] + ", " + separated[1] + ", " + separated[3] + "\n");
+                writer.write(separated[0] + ", " + separated[1] + ", " + separated[2] + ", " + separated[3] + "\n");
             }
             writer.close();
         } catch (IOException e) {
